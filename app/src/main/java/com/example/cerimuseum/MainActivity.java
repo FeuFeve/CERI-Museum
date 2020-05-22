@@ -1,7 +1,6 @@
 package com.example.cerimuseum;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -12,18 +11,11 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.cerimuseum.ui.main.SectionsPagerAdapter;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLOutput;
 
 public class MainActivity extends AppCompatActivity {
 
