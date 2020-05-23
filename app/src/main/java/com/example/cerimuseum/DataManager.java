@@ -3,9 +3,9 @@ package com.example.cerimuseum;
 import java.util.ArrayList;
 import java.util.List;
 
-class DataManager {
+public class DataManager {
 
-    static List<MuseumObject> museumObjects = new ArrayList<>();
+    public static List<MuseumObject> museumObjects = new ArrayList<>();
 
 
     static void print() {

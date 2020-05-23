@@ -99,16 +99,14 @@ class JsonParser {
 
         MuseumObject museumObject = new MuseumObject(id, name, description, categories, timeFrame);
         if (!brand.isEmpty()) {
-            museumObject.brand = brand;
+            museumObject.setBrand(brand);
         }
         if (year != 0) {
-            museumObject.year = year;
+            museumObject.setYear(year);
         }
-        museumObject.working = working;
-        museumObject.timeFrame = timeFrame;
-        museumObject.technicalDetails = technicalDetails;
-        museumObject.categories = categories;
-        museumObject.pictures = pictures;
+        museumObject.setWorking(working);
+        museumObject.setTechnicalDetails(technicalDetails);
+        museumObject.setPictures(pictures);
 
         DataManager.museumObjects.add(museumObject);
     }

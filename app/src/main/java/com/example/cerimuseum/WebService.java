@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-class WebService {
+public class WebService {
 
     private static String HOST = "demo-lia.univ-avignon.fr";
     private static String PATH_1 = "cerimuseum";
@@ -25,13 +25,13 @@ class WebService {
         return builder;
     }
 
-    static URL buildSearchCatalog() throws MalformedURLException {
+    public static URL buildSearchCatalog() throws MalformedURLException {
         Uri.Builder builder = commonBuilder();
         builder.appendPath(CATALOG);
         return new URL(builder.build().toString());
     }
 
-    static void sendRequestAndUpdate(URL url) throws IOException {
+    public static void sendRequestAndUpdate(URL url) throws IOException {
         // Send the request
         final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
