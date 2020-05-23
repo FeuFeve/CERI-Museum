@@ -1,7 +1,10 @@
-package com.example.cerimuseum;
+package com.example.cerimuseum.parser;
 
 import android.util.JsonReader;
 import android.util.Pair;
+
+import com.example.cerimuseum.model.DataManager;
+import com.example.cerimuseum.model.MuseumObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,10 +12,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class JsonParser {
+public class JsonParser {
 
 
-    static void parseFile(InputStream response) throws IOException {
+    public static void parseFile(InputStream response) throws IOException {
 
         JsonReader reader = new JsonReader(new InputStreamReader(response, "UTF-8"));
 

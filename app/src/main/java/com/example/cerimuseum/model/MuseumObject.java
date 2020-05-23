@@ -1,4 +1,4 @@
-package com.example.cerimuseum;
+package com.example.cerimuseum.model;
 
 import android.util.Log;
 import android.util.Pair;
@@ -23,7 +23,7 @@ public class MuseumObject {
     private List<Pair<String, String>> pictures;
 
 
-    MuseumObject(String id, String name, String description, List<String> categories, List<Integer> timeFrame) {
+    public MuseumObject(String id, String name, String description, List<String> categories, List<Integer> timeFrame) {
         this.id = id;
         this.name = name;
         this.description = description;
