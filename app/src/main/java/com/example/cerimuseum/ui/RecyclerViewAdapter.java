@@ -57,14 +57,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         MuseumObject museumObject = DataManager.museumObjects.get(position);
 
-        // Fill the list item content
+        // Name
         holder.name.setText(museumObject.getName());
+
+        // Brand
         holder.brand.setText(museumObject.getBrand());
         if (holder.brand.getText().equals(""))
             holder.brand.setHeight(0);
         else
             holder.brand.setMinHeight(40);
 
+        // Time line
+        String timeLine = String.valueOf(museumObject.getTimeFrame().get(0));
+        if (museumObject.getTimeFrame().size() > 1) {
+            timeLine += " - " + museumObject.getTimeFrame().get(museumObject.getTimeFrame().size() - 1);
+        }
+        holder.timeFrame.setText(timeLine);
+
+        // Categories
         String cat = "";
         List<String> categories = museumObject.getCategories();
         if (categories != null && !categories.isEmpty()) {
@@ -101,6 +111,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private ImageView thumbnail;
         private TextView name;
         private TextView brand;
+        private TextView timeFrame;
         private TextView categories;
 
 
@@ -111,6 +122,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             thumbnail = itemView.findViewById(R.id.objectImage);
             name = itemView.findViewById(R.id.objectName);
             brand = itemView.findViewById(R.id.objectBrand);
+            timeFrame = itemView.findViewById(R.id.timeFrame);
             categories = itemView.findViewById(R.id.objectCategories);
         }
     }
