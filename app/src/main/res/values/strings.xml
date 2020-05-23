@@ -2,4 +2,11 @@
     <string name="app_name">CERI Museum</string>
     <string name="tab_text_1">List</string>
     <string name="tab_text_2">Categories</string>
+
+    <string-array name="SortByList">
+        <item>Name (A → Z)</item>
+        <item>Name (Z → A)</item>
+        <item>Time frame (newest)</item>
+        <item>Time frame (oldest)</item>
+    </string-array>
 </resources>

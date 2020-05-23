@@ -11,8 +11,8 @@ import com.example.cerimuseum.model.MuseumObject;
 import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
-    MuseumObject museumObject;
+    private ImageView bmImage;
+    private MuseumObject museumObject;
 
     public DownloadImageTask(MuseumObject museumObject) {
         this.museumObject = museumObject;
