@@ -20,10 +20,10 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
 
-    Context context;
+    private Context context;
 
 
-    public RecyclerViewAdapter(Context context) {
+    RecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
