@@ -55,6 +55,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
         holder.categories.setText(cat);
 
+        // Thumbnail
+        holder.thumbnail.setImageBitmap(museumObject.getThumbnail());
+
         // Colors
         int color = 0;
         switch (position % 2) {

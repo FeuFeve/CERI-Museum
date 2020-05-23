@@ -5,6 +5,8 @@ import android.util.Pair;
 
 import com.example.cerimuseum.model.DataManager;
 import com.example.cerimuseum.model.MuseumObject;
+import com.example.cerimuseum.net.DownloadImageTask;
+import com.example.cerimuseum.net.WebService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -110,6 +112,9 @@ public class JsonParser {
         museumObject.setWorking(working);
         museumObject.setTechnicalDetails(technicalDetails);
         museumObject.setPictures(pictures);
+
+        // Download the thumbnail of the object
+        new DownloadImageTask(museumObject).execute(WebService.buildSearchThumbnail(id).toString());
 
         DataManager.museumObjects.add(museumObject);
     }

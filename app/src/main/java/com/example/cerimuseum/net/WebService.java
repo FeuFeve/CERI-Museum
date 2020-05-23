@@ -1,6 +1,11 @@
 package com.example.cerimuseum.net;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.cerimuseum.parser.JsonParser;
 
@@ -16,6 +21,8 @@ public class WebService {
     private static String PATH_1 = "cerimuseum";
 
     private static String CATALOG = "catalog";
+    private static String ITEMS = "items";
+    private static String THUMBNAIL = "thumbnail";
 
 
     private static Uri.Builder commonBuilder() {
@@ -30,6 +37,14 @@ public class WebService {
     public static URL buildSearchCatalog() throws MalformedURLException {
         Uri.Builder builder = commonBuilder();
         builder.appendPath(CATALOG);
+        return new URL(builder.build().toString());
+    }
+
+    public static URL buildSearchThumbnail(String objectID) throws MalformedURLException {
+        Uri.Builder builder = commonBuilder();
+        builder.appendPath(ITEMS)
+                .appendPath(objectID)
+                .appendPath(THUMBNAIL);
         return new URL(builder.build().toString());
     }
 

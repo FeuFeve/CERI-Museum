@@ -1,7 +1,9 @@
 package com.example.cerimuseum.model;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class MuseumObject {
     private List<String> technicalDetails;
     private List<String> categories;
     private List<Pair<String, String>> pictures;
+
+    private Bitmap thumbnail;
 
 
     public MuseumObject(String id, String name, String description, List<String> categories, List<Integer> timeFrame) {
@@ -139,5 +143,13 @@ public class MuseumObject {
 
     public void setPictures(List<Pair<String, String>> pictures) {
         this.pictures = pictures;
+    }
+
+    public Bitmap getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Bitmap thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }
