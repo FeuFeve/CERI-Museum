@@ -3,7 +3,6 @@ package com.example.cerimuseum.model;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.Pair;
-import android.widget.ImageView;
 
 import java.util.List;
 
@@ -11,11 +10,11 @@ public class MuseumObject {
 
     public static final String TAG = "MuseumObject";
 
-    private String id;
+    private String id = "";
 
-    private String name;
-    private String brand;
-    private String description;
+    private String name = "";
+    private String brand = "";
+    private String description = "";
     private int year;
     private int working;
 

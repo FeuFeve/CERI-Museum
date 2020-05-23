@@ -60,9 +60,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // Fill the list item content
         holder.name.setText(museumObject.getName());
         holder.brand.setText(museumObject.getBrand());
-        if (museumObject.getBrand() == null || museumObject.getBrand().isEmpty()) {
+        if (holder.brand.getText().equals(""))
             holder.brand.setHeight(0);
-        }
+        else
+            holder.brand.setMinHeight(40);
 
         String cat = "";
         List<String> categories = museumObject.getCategories();
