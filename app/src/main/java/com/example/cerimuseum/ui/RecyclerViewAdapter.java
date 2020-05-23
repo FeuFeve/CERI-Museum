@@ -67,12 +67,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         else
             holder.brand.setMinHeight(40);
 
-        // Time line
-        String timeLine = String.valueOf(museumObject.getTimeFrame().get(0));
+        // Time frame
+        String tf = String.valueOf(museumObject.getTimeFrame().get(0));
         if (museumObject.getTimeFrame().size() > 1) {
-            timeLine += " - " + museumObject.getTimeFrame().get(museumObject.getTimeFrame().size() - 1);
+            tf += " - " + museumObject.getTimeFrame().get(museumObject.getTimeFrame().size() - 1);
         }
-        holder.timeFrame.setText(timeLine);
+        holder.timeFrame.setText(tf);
 
         // Categories
         String cat = "";
