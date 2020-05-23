@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MuseumObject {
 
-    private final String TAG = "MuseumObject";
+    public static final String TAG = "MuseumObject";
 
     private String id;
 

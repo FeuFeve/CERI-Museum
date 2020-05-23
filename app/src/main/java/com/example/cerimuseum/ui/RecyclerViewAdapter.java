@@ -1,12 +1,14 @@
 package com.example.cerimuseum.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -31,7 +33,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-        return new CustomViewHolder(view);
+        final CustomViewHolder viewHolder = new CustomViewHolder(view);
+
+
+
+        viewHolder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MuseumObject museumObject = DataManager.museumObjects.get(viewHolder.getAdapterPosition());
+
+                Intent intent = new Intent(context, MuseumObjectActivity.class);
+                intent.putExtra(MuseumObject.TAG, viewHolder.getAdapterPosition());
+                context.startActivity(intent);
+
+                Toast.makeText(context, "Clicked on: " + museumObject.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return viewHolder;
     }
 
     @Override

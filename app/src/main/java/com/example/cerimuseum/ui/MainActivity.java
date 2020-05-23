@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 URL url = WebService.buildSearchCatalog();
                 WebService.sendRequestAndUpdate(url);
                 System.out.println("OBJECTS : " + DataManager.museumObjects.size());
-//                DataManager.print();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            Log.d("MAIN ACTIVITY", "Notify data set changed");
+            // Actualize the RecyclerView
             activity.listFragment.adapter.notifyDataSetChanged();
         }
     }
