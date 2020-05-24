@@ -119,14 +119,10 @@ public class JsonParser {
         // Download the thumbnail of the object
         new DownloadImageTask(museumObject, 1000).execute(WebService.buildSearchThumbnail(id).toString());
 
-        // Download the pictureIDs of the object
+        // Prepare the pictures list
         for (int i = 0; i < pictureIDs.size(); i++) {
             pictures.add(null);
         }
-//        for (int i = 0; i < pictureIDs.size(); i++) {
-//            Pair<String, String> picture = pictureIDs.get(i);
-//            new DownloadImageTask(pictures, i).execute(WebService.buildSearchPicture(id, picture.first).toString());
-//        }
         museumObject.setPictures(pictures);
 
         DataManager.museumObjects.add(museumObject);

@@ -2,7 +2,9 @@ package com.example.cerimuseum.ui;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.cerimuseum.R;
 import com.example.cerimuseum.model.DataManager;
@@ -10,6 +12,8 @@ import com.example.cerimuseum.net.WebService;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -44,6 +51,31 @@ public class MainActivity extends AppCompatActivity {
         new DataManagerTask(this).execute();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        System.out.println("########## CREATING OPTIONS MENU ##########");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.actionSearch);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                listFragment.adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        System.out.println("########## FINISHED CREATING OPTIONS MENU ##########");
+        return true;
+    }
 
     private static class DataManagerTask extends AsyncTask<Void, Void, String> {
 

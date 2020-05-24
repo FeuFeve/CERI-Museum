@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -18,15 +19,18 @@ import com.example.cerimuseum.R;
 import com.example.cerimuseum.model.DataManager;
 import com.example.cerimuseum.model.MuseumObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> implements Filterable {
 
     private Context context;
+    private List<MuseumObject> filteredMuseumObjects;
 
 
     RecyclerViewAdapter(Context context) {
         this.context = context;
+        filteredMuseumObjects = DataManager.museumObjects;
     }
 
     @NonNull
@@ -40,8 +44,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MuseumObject museumObject = DataManager.museumObjects.get(viewHolder.getAdapterPosition());
-
                 Intent intent = new Intent(context, MuseumObjectActivity.class);
                 intent.putExtra(MuseumObject.TAG, viewHolder.getAdapterPosition());
                 context.startActivity(intent);
@@ -53,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        MuseumObject museumObject = DataManager.museumObjects.get(position);
+        MuseumObject museumObject = filteredMuseumObjects.get(position);
 
         // Name
         holder.name.setText(museumObject.getName());
@@ -99,8 +101,50 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return DataManager.museumObjects.size();
+        return filteredMuseumObjects.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<MuseumObject> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(DataManager.museumObjects);
+            }
+            else {
+                String filteredPattern = constraint.toString().toLowerCase().trim();
+
+                for (MuseumObject museumObject : DataManager.museumObjects) {
+                    if (museumObject.getName().toLowerCase().contains(filteredPattern)) {
+                        filteredList.add(museumObject);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            if (filteredMuseumObjects == DataManager.museumObjects) {
+                filteredMuseumObjects = new ArrayList<>();
+            }
+            else {
+                filteredMuseumObjects.clear();
+            }
+            filteredMuseumObjects.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
