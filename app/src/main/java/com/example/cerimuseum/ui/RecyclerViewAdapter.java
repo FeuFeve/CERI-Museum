@@ -45,8 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Intent intent = new Intent(context, MuseumObjectActivity.class);
                 intent.putExtra(MuseumObject.TAG, viewHolder.getAdapterPosition());
                 context.startActivity(intent);
-
-                Toast.makeText(context, "Clicked on: " + museumObject.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 

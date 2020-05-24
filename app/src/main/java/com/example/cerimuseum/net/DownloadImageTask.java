@@ -9,35 +9,68 @@ import android.widget.ImageView;
 import com.example.cerimuseum.model.MuseumObject;
 
 import java.io.InputStream;
+import java.util.List;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    private ImageView bmImage;
-    private MuseumObject museumObject;
 
-    public DownloadImageTask(MuseumObject museumObject) {
-        this.museumObject = museumObject;
+    private ImageView imageView;
+    private MuseumObject museumObject;
+    private List<Bitmap> pictures;
+    private int listIndex;
+    private int maxSize;
+
+
+    public DownloadImageTask(ImageView imageView, int maxSize) {
+        this.imageView = imageView;
+        this.maxSize = maxSize;
     }
 
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
+    public DownloadImageTask(MuseumObject museumObject, int maxSize) {
+        this.museumObject = museumObject;
+        this.maxSize = maxSize;
+    }
+
+    public DownloadImageTask(List<Bitmap> pictures, int listIndex, ImageView imageView, int maxSize) {
+        this(imageView, maxSize);
+        this.pictures = pictures;
+        this.listIndex = listIndex;
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
+        String urlDisplay = urls[0];
+        Bitmap bitmap = null;
         try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
+            InputStream in = new java.net.URL(urlDisplay).openStream();
+            bitmap = BitmapFactory.decodeStream(in);
+
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+
+            if (width > maxSize) {
+                float bitmapRatio = (float) width / (float) height;
+                if (bitmapRatio > 1) {
+                    width = maxSize;
+                    height = (int) (width / bitmapRatio);
+                } else {
+                    height = maxSize;
+                    width = (int) (height * bitmapRatio);
+                }
+
+                return Bitmap.createScaledBitmap(bitmap, width, height, true);
+            }
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-        return mIcon11;
+        return bitmap;
     }
 
     protected void onPostExecute(Bitmap result) {
-        if (bmImage != null) {
-            bmImage.setImageBitmap(result);
+        if (pictures != null) {
+            pictures.set(listIndex, result);
+        }
+        if (imageView != null) {
+            imageView.setImageBitmap(result);
         }
         if (museumObject != null) {
             museumObject.setThumbnail(result);

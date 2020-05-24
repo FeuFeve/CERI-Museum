@@ -179,7 +179,7 @@
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
-            android:id="@+id/imagesLayout"
+            android:id="@+id/picturesLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:gravity="center"
-                android:text="Images"
+                android:text="Pictures"
                 android:textSize="20dp" />
 
         </LinearLayout>

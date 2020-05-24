@@ -21,9 +21,10 @@ public class MuseumObject {
     private List<Integer> timeFrame;
     private List<String> technicalDetails;
     private List<String> categories;
-    private List<Pair<String, String>> pictures;
+    private List<Pair<String, String>> pictureIDs;
 
     private Bitmap thumbnail;
+    private List<Bitmap> pictures;
 
 
     public MuseumObject(String id, String name, String description, List<String> categories, List<Integer> timeFrame) {
@@ -58,8 +59,8 @@ public class MuseumObject {
             Log.d(TAG, "\t\t" + s);
         }
 
-        Log.d(TAG, "\tpictures:");
-        for (Pair<String, String> p : pictures) {
+        Log.d(TAG, "\tpictureIDs:");
+        for (Pair<String, String> p : pictureIDs) {
             Log.d(TAG, "\t\t" + p.first + ": " + p.second);
         }
     }
@@ -136,12 +137,12 @@ public class MuseumObject {
         this.categories = categories;
     }
 
-    public List<Pair<String, String>> getPictures() {
-        return pictures;
+    public List<Pair<String, String>> getPictureIDs() {
+        return pictureIDs;
     }
 
-    public void setPictures(List<Pair<String, String>> pictures) {
-        this.pictures = pictures;
+    public void setPictureIDs(List<Pair<String, String>> pictureIDs) {
+        this.pictureIDs = pictureIDs;
     }
 
     public Bitmap getThumbnail() {
@@ -150,5 +151,13 @@ public class MuseumObject {
 
     public void setThumbnail(Bitmap thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public List<Bitmap> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Bitmap> pictures) {
+        this.pictures = pictures;
     }
 }

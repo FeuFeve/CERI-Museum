@@ -1,5 +1,6 @@
 package com.example.cerimuseum.parser;
 
+import android.graphics.Bitmap;
 import android.util.JsonReader;
 import android.util.Pair;
 
@@ -40,7 +41,9 @@ public class JsonParser {
         List<Integer> timeFrame = new ArrayList<>();
         List<String> technicalDetails = new ArrayList<>();
         List<String> categories = new ArrayList<>();
-        List<Pair<String, String>> pictures = new ArrayList<>();
+        List<Pair<String, String>> pictureIDs = new ArrayList<>();
+
+        List<Bitmap> pictures = new ArrayList<>();
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -91,7 +94,7 @@ public class JsonParser {
                 case "pictures":
                     reader.beginObject();
                     while (reader.hasNext()) {
-                        pictures.add(new Pair<>(reader.nextName(), reader.nextString()));
+                        pictureIDs.add(new Pair<>(reader.nextName(), reader.nextString()));
                     }
                     reader.endObject();
                     break;
@@ -111,10 +114,20 @@ public class JsonParser {
         }
         museumObject.setWorking(working);
         museumObject.setTechnicalDetails(technicalDetails);
-        museumObject.setPictures(pictures);
+        museumObject.setPictureIDs(pictureIDs);
 
         // Download the thumbnail of the object
-        new DownloadImageTask(museumObject).execute(WebService.buildSearchThumbnail(id).toString());
+        new DownloadImageTask(museumObject, 1000).execute(WebService.buildSearchThumbnail(id).toString());
+
+        // Download the pictureIDs of the object
+        for (int i = 0; i < pictureIDs.size(); i++) {
+            pictures.add(null);
+        }
+//        for (int i = 0; i < pictureIDs.size(); i++) {
+//            Pair<String, String> picture = pictureIDs.get(i);
+//            new DownloadImageTask(pictures, i).execute(WebService.buildSearchPicture(id, picture.first).toString());
+//        }
+        museumObject.setPictures(pictures);
 
         DataManager.museumObjects.add(museumObject);
     }

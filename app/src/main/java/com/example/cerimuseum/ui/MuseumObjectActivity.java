@@ -1,8 +1,12 @@
 package com.example.cerimuseum.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cerimuseum.R;
 import com.example.cerimuseum.model.DataManager;
 import com.example.cerimuseum.model.MuseumObject;
+import com.example.cerimuseum.net.DownloadImageTask;
+import com.example.cerimuseum.net.WebService;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class MuseumObjectActivity extends AppCompatActivity {
@@ -33,6 +40,7 @@ public class MuseumObjectActivity extends AppCompatActivity {
     private TextView tvTechnicalDetails;
 
     private LinearLayout technicalDetailsLayout;
+    private LinearLayout picturesLayout;
 
 
     @Override
@@ -63,6 +71,7 @@ public class MuseumObjectActivity extends AppCompatActivity {
         tvTechnicalDetails = findViewById(R.id.technicalDetails);
 
         technicalDetailsLayout = findViewById(R.id.technicalDetailsLayout);
+        picturesLayout = findViewById(R.id.picturesLayout);
     }
 
     private void updateView() {
@@ -134,6 +143,33 @@ public class MuseumObjectActivity extends AppCompatActivity {
         }
         else {
             tvTechnicalDetails.setText(td);
+        }
+
+        // Pictures
+        for (int i = 0; i < museumObject.getPictures().size(); i++) {
+            Bitmap picture = museumObject.getPictures().get(i);
+
+            // Set the image view
+            ImageView imageView = new ImageView(this);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            imageView.setLayoutParams(layoutParams);
+            imageView.setImageBitmap(picture);
+
+            picturesLayout.addView(imageView);
+
+            // Download the image if not already done
+            if (picture == null) {
+                try {
+                    // Get width size of the screen
+                    DisplayMetrics metrics = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                    int width = metrics.widthPixels;
+
+                    new DownloadImageTask(museumObject.getPictures(), i, imageView, width).execute(WebService.buildSearchPicture(
+                            museumObject.getId(), museumObject.getPictureIDs().get(i).first).toString());
+                } catch (MalformedURLException ignored) {  }
+            }
         }
     }
 }

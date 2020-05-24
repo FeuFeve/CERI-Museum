@@ -23,6 +23,7 @@ public class WebService {
     private static String CATALOG = "catalog";
     private static String ITEMS = "items";
     private static String THUMBNAIL = "thumbnail";
+    private static String IMAGES = "images";
 
 
     private static Uri.Builder commonBuilder() {
@@ -45,6 +46,15 @@ public class WebService {
         builder.appendPath(ITEMS)
                 .appendPath(objectID)
                 .appendPath(THUMBNAIL);
+        return new URL(builder.build().toString());
+    }
+
+    public static URL buildSearchPicture(String objectID, String pictureID) throws MalformedURLException {
+        Uri.Builder builder = commonBuilder();
+        builder.appendPath(ITEMS)
+                .appendPath(objectID)
+                .appendPath(IMAGES)
+                .appendPath(pictureID);
         return new URL(builder.build().toString());
     }
 
