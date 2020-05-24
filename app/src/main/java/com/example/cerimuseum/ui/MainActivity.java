@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        System.out.println("########## CREATING OPTIONS MENU ##########");
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
 
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        System.out.println("########## FINISHED CREATING OPTIONS MENU ##########");
         return true;
     }
 

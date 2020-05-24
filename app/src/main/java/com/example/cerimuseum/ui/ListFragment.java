@@ -2,21 +2,15 @@ package com.example.cerimuseum.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,8 +34,6 @@ public class ListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        setHasOptionsMenu(true);
-
         view = inflater.inflate(R.layout.fragment_list, container, false);
 
         recyclerView = view.findViewById(R.id.listRecyclerView);
@@ -51,9 +43,6 @@ public class ListFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         createSortBySpinner();
-
-//        Toolbar toolbar = view.findViewById(R.id.toolbar);
-//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         return view;
     }
@@ -101,29 +90,5 @@ public class ListFragment extends Fragment {
 
             }
         });
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        System.out.println("########## CREATING OPTIONS MENU 2 ##########");
-        inflater.inflate(R.menu.search_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.actionSearch);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-        System.out.println("########## FINISHED CREATING OPTIONS MENU 2 ##########");
     }
 }
