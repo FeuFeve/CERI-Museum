@@ -8,6 +8,7 @@ import java.util.List;
 public class DataManager {
 
     public static List<MuseumObject> museumObjects = new ArrayList<>();
+    public static List<MuseumObject> filteredMuseumObjects;
 
 
     static void print() {

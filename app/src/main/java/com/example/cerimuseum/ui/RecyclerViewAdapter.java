@@ -25,12 +25,11 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> implements Filterable {
 
     private Context context;
-    private List<MuseumObject> filteredMuseumObjects;
 
 
     RecyclerViewAdapter(Context context) {
         this.context = context;
-        filteredMuseumObjects = DataManager.museumObjects;
+        DataManager.filteredMuseumObjects = DataManager.museumObjects;
     }
 
     @NonNull
@@ -55,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        MuseumObject museumObject = filteredMuseumObjects.get(position);
+        MuseumObject museumObject = DataManager.filteredMuseumObjects.get(position);
 
         // Name
         holder.name.setText(museumObject.getName());
@@ -101,7 +100,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return filteredMuseumObjects.size();
+        return DataManager.filteredMuseumObjects.size();
     }
 
     @Override
@@ -121,8 +120,42 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 String filteredPattern = constraint.toString().toLowerCase().trim();
 
                 for (MuseumObject museumObject : DataManager.museumObjects) {
-                    if (museumObject.getName().toLowerCase().contains(filteredPattern)) {
+                    // Search in: Name
+                    if (museumObject.getName().toLowerCase().contains(filteredPattern))
                         filteredList.add(museumObject);
+
+                    // Search in: Brand
+                    else if (museumObject.getBrand().toLowerCase().contains(filteredPattern))
+                        filteredList.add(museumObject);
+
+                    // Search in: Description
+                    else if (museumObject.getDescription().toLowerCase().contains(filteredPattern))
+                        filteredList.add(museumObject);
+
+                    // Search in: Year (of acquisition)
+                    else if (String.valueOf(museumObject.getYear()).toLowerCase().contains(filteredPattern))
+                        filteredList.add(museumObject);
+
+                    else {
+                        // Search in: Time frame
+                        if (!museumObject.getTimeFrame().isEmpty()) {
+                            for (int year : museumObject.getTimeFrame()) {
+                                if (String.valueOf(year).toLowerCase().contains(filteredPattern)) {
+                                    filteredList.add(museumObject);
+                                    break;
+                                }
+                            }
+                        }
+
+                        // Search in: Categories
+                        else if (!museumObject.getCategories().isEmpty()) {
+                            for (String category : museumObject.getCategories()) {
+                                if (category.toLowerCase().contains(filteredPattern)) {
+                                    filteredList.add(museumObject);
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -135,13 +168,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            if (filteredMuseumObjects == DataManager.museumObjects) {
-                filteredMuseumObjects = new ArrayList<>();
+            if (DataManager.filteredMuseumObjects == DataManager.museumObjects) {
+                DataManager.filteredMuseumObjects = new ArrayList<>();
             }
             else {
-                filteredMuseumObjects.clear();
+                DataManager.filteredMuseumObjects.clear();
             }
-            filteredMuseumObjects.addAll((List) results.values);
+            DataManager.filteredMuseumObjects.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };

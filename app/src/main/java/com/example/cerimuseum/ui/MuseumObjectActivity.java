@@ -50,7 +50,7 @@ public class MuseumObjectActivity extends AppCompatActivity {
 
         // Get intent
         Intent intent = getIntent();
-        museumObject = DataManager.museumObjects.get(intent.getExtras().getInt(MuseumObject.TAG));
+        museumObject = DataManager.filteredMuseumObjects.get(intent.getExtras().getInt(MuseumObject.TAG));
 
         getLayoutElements();
 
