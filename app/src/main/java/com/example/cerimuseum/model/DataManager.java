@@ -1,20 +1,42 @@
 package com.example.cerimuseum.model;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataManager {
 
     public static List<MuseumObject> museumObjects = new ArrayList<>();
     public static List<MuseumObject> filteredMuseumObjects;
-    public static List<String> nextDemos = new ArrayList<>();
+
+    public static HashMap<String, List<MuseumObject>> categories = new HashMap<>();
 
 
-    static void print() {
-        for (MuseumObject museumObject : museumObjects) {
-            museumObject.print();
+    public static void addToCorrespondingCategories(MuseumObject museumObject) {
+        boolean categoryFound;
+
+        if (!museumObject.getCategories().isEmpty()) {
+            for (String currentCategory : museumObject.getCategories()) {
+
+                categoryFound = false;
+                for (String category : categories.keySet()) {
+                    if (category.equals(currentCategory)) {
+                        categories.get(category).add(museumObject);
+                        categoryFound = true;
+                        break;
+                    }
+                }
+
+                if (!categoryFound) {
+                    List<MuseumObject> newList = new ArrayList<>();
+                    newList.add(museumObject);
+                    categories.put(currentCategory, newList);
+                }
+            }
         }
     }
 

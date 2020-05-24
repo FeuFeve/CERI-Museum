@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     ViewPagerAdapter adapter;
     ListFragment listFragment;
+    CategoriesFragment categoriesFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         // Add fragments
         listFragment = new ListFragment();
         adapter.addFragment(listFragment, "Objects list");
-        adapter.addFragment(new CategoriesFragment(), "Categories");
+
+        categoriesFragment = new CategoriesFragment();
+        adapter.addFragment(categoriesFragment, "Categories");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -105,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // Read the response and parse the file
                 JsonParser.parseDemos(responseDemos);
-                System.out.println("NEXT DEMOS : " + DataManager.nextDemos.size());
             } catch (Exception e) {
                 e.printStackTrace();
             }

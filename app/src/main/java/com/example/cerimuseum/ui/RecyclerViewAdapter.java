@@ -22,7 +22,7 @@ import com.example.cerimuseum.model.MuseumObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> implements Filterable {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomItemHolder> implements Filterable {
 
     private Context context;
 
@@ -34,9 +34,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-        final CustomViewHolder viewHolder = new CustomViewHolder(view);
+        final CustomItemHolder viewHolder = new CustomItemHolder(view);
 
 
 
@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomItemHolder holder, int position) {
         MuseumObject museumObject = DataManager.filteredMuseumObjects.get(position);
 
         // Thumbnail
@@ -180,17 +180,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     };
 
 
-    static class CustomViewHolder extends RecyclerView.ViewHolder {
+    static class CustomItemHolder extends RecyclerView.ViewHolder {
 
-        private LinearLayout container;
-        private ImageView thumbnail;
-        private TextView name;
-        private TextView brand;
-        private TextView timeFrame;
-        private TextView categories;
+        LinearLayout container;
+        ImageView thumbnail;
+        TextView name;
+        TextView brand;
+        TextView timeFrame;
+        TextView categories;
 
 
-        CustomViewHolder(View itemView) {
+        CustomItemHolder(View itemView) {
             super(itemView);
 
             container = itemView.findViewById(R.id.container);
@@ -199,6 +199,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             brand = itemView.findViewById(R.id.objectBrand);
             timeFrame = itemView.findViewById(R.id.timeFrame);
             categories = itemView.findViewById(R.id.objectCategories);
+        }
+    }
+
+
+    static class CustomHeaderHolder extends RecyclerView.ViewHolder {
+
+        TextView tvTitle;
+
+        public CustomHeaderHolder(@NonNull View itemView) {
+            super(itemView);
+
+            tvTitle = itemView.findViewById(R.id.sectionName);
         }
     }
 }

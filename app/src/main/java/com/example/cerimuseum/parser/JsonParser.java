@@ -151,5 +151,6 @@ public class JsonParser {
         museumObject.setPictures(pictures);
 
         DataManager.museumObjects.add(museumObject);
+        DataManager.addToCorrespondingCategories(museumObject);
     }
 }

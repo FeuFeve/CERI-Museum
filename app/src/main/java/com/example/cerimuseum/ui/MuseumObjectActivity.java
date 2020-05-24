@@ -95,10 +95,10 @@ public class MuseumObjectActivity extends AppCompatActivity {
             tvIsWorking.setHeight(0);
         }
         else if (museumObject.getWorking() == 0) {
-            tvIsWorking.setText("Is working: false");
+            tvIsWorking.setText("State: not working");
         }
         else {
-            tvIsWorking.setText("Is working: true");
+            tvIsWorking.setText("State: working properly");
         }
 
         // Next demos (if)
