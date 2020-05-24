@@ -9,6 +9,7 @@ public class DataManager {
 
     public static List<MuseumObject> museumObjects = new ArrayList<>();
     public static List<MuseumObject> filteredMuseumObjects;
+    public static List<String> nextDemos = new ArrayList<>();
 
 
     static void print() {

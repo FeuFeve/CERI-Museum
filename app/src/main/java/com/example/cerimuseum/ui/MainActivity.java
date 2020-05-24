@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import com.example.cerimuseum.R;
 import com.example.cerimuseum.model.DataManager;
 import com.example.cerimuseum.net.WebService;
+import com.example.cerimuseum.parser.JsonParser;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.URL;
 
@@ -87,10 +89,23 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                System.out.println("##### SENDING THE REQUEST #####");
-                URL url = WebService.buildSearchCatalog();
-                WebService.sendRequestAndUpdate(url);
+                // Get the museum objects
+                System.out.println("##### SENDING THE OBJECTS REQUEST #####");
+                URL urlObjects = WebService.buildSearchCatalog();
+                InputStream responseObjects = WebService.sendRequestAndUpdate(urlObjects);
+
+                // Read the response and parse the file
+                JsonParser.parseMuseumObjects(responseObjects);
                 System.out.println("OBJECTS : " + DataManager.museumObjects.size());
+
+                // Get the next demos' time
+                System.out.println("##### SENDING THE DEMOS REQUEST #####");
+                URL urlDemos = WebService.buildSearchDemos();
+                InputStream responseDemos = WebService.sendRequestAndUpdate(urlDemos);
+
+                // Read the response and parse the file
+                JsonParser.parseDemos(responseDemos);
+                System.out.println("NEXT DEMOS : " + DataManager.nextDemos.size());
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -34,6 +33,7 @@ public class MuseumObjectActivity extends AppCompatActivity {
     private TextView tvIsWorking;
     private TextView tvTimeFrame;
     private TextView tvYear;
+    private TextView tvNextDemos;
 
     private TextView tvDescription;
     private TextView tvCategories;
@@ -65,6 +65,7 @@ public class MuseumObjectActivity extends AppCompatActivity {
         tvIsWorking = findViewById(R.id.isWorking);
         tvTimeFrame = findViewById(R.id.timeFrame);
         tvYear = findViewById(R.id.year);
+        tvNextDemos = findViewById(R.id.nextDemos);
 
         tvDescription = findViewById(R.id.description);
         tvCategories = findViewById(R.id.categories);
@@ -98,6 +99,18 @@ public class MuseumObjectActivity extends AppCompatActivity {
         }
         else {
             tvIsWorking.setText("Is working: true");
+        }
+
+        // Next demos (if)
+        if (museumObject.getNextDemos() != null) {
+            String nextDemos = "Next demos:";
+            for (String nextDemo : museumObject.getNextDemos()) {
+                nextDemos += "\n- " + nextDemo;
+            }
+            tvNextDemos.setText(nextDemos);
+        }
+        else {
+            tvNextDemos.setHeight(0);
         }
 
         // Time frame

@@ -18,6 +18,7 @@ public class MuseumObject {
     private int year;
     private int working;
 
+    private List<String> nextDemos;
     private List<Integer> timeFrame;
     private List<String> technicalDetails;
     private List<String> categories;
@@ -111,6 +112,14 @@ public class MuseumObject {
 
     public void setWorking(int working) {
         this.working = working;
+    }
+
+    public List<String> getNextDemos() {
+        return nextDemos;
+    }
+
+    public void setNextDemos(List<String> nextDemos) {
+        this.nextDemos = nextDemos;
     }
 
     public List<Integer> getTimeFrame() {

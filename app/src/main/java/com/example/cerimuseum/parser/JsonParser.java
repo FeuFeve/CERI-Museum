@@ -18,13 +18,38 @@ import java.util.List;
 public class JsonParser {
 
 
-    public static void parseFile(InputStream response) throws IOException {
-
+    public static void parseMuseumObjects(InputStream response) throws IOException {
+        // Get the museum objects
         JsonReader reader = new JsonReader(new InputStreamReader(response, "UTF-8"));
 
         reader.beginObject();
         while (reader.hasNext()) {
             readMuseumObject(reader);
+        }
+        reader.endObject();
+    }
+
+    public static void parseDemos(InputStream response) throws IOException {
+        // Get the museum objects
+        JsonReader reader = new JsonReader(new InputStreamReader(response, "UTF-8"));
+
+        String id;
+        String time;
+
+        reader.beginObject();
+        while (reader.hasNext()) {
+            id = reader.nextName();
+            time = reader.nextString();
+
+            for (MuseumObject museumObject : DataManager.museumObjects) {
+                if (museumObject.getId().equals(id)) {
+                    if (museumObject.getNextDemos() == null) {
+                        museumObject.setNextDemos(new ArrayList<String>());
+                    }
+                    museumObject.getNextDemos().add(time);
+                    break;
+                }
+            }
         }
         reader.endObject();
     }

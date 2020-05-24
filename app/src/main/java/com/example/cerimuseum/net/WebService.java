@@ -1,11 +1,6 @@
 package com.example.cerimuseum.net;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ImageView;
 
 import com.example.cerimuseum.parser.JsonParser;
 
@@ -24,6 +19,7 @@ public class WebService {
     private static String ITEMS = "items";
     private static String THUMBNAIL = "thumbnail";
     private static String IMAGES = "images";
+    private static String DEMOS = "demos";
 
 
     private static Uri.Builder commonBuilder() {
@@ -58,14 +54,19 @@ public class WebService {
         return new URL(builder.build().toString());
     }
 
-    public static void sendRequestAndUpdate(URL url) throws IOException {
+    public static URL buildSearchDemos() throws MalformedURLException {
+        Uri.Builder builder = commonBuilder();
+        builder.appendPath(DEMOS);
+        return new URL(builder.build().toString());
+    }
+
+    public static InputStream sendRequestAndUpdate(URL url) throws IOException {
         // Send the request
         final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
         // Get the response
         InputStream response = urlConnection.getInputStream();
 
-        // Read the response and update the team information
-        JsonParser.parseFile(response);
+        return response;
     }
 }

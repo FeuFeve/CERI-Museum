@@ -56,6 +56,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         MuseumObject museumObject = DataManager.filteredMuseumObjects.get(position);
 
+        // Thumbnail
+        holder.thumbnail.setImageBitmap(museumObject.getThumbnail());
+
         // Name
         holder.name.setText(museumObject.getName());
 
@@ -83,9 +86,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         }
         holder.categories.setText(cat);
-
-        // Thumbnail
-        holder.thumbnail.setImageBitmap(museumObject.getThumbnail());
 
         // Colors
         int color = 0;
