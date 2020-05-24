@@ -154,6 +154,7 @@ public class MuseumObjectActivity extends AppCompatActivity {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             imageView.setLayoutParams(layoutParams);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageBitmap(picture);
 
             picturesLayout.addView(imageView);
