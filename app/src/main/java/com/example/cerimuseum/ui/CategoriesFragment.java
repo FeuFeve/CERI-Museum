@@ -41,7 +41,7 @@ public class CategoriesFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public void refreshSectionAdapter() {
+    void refreshSectionAdapter() {
         sectionAdapter = new SectionedRecyclerViewAdapter();
 
         // Sections

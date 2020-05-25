@@ -18,7 +18,6 @@ public class DataManager {
 
     public static void addToCorrespondingCategories(MuseumObject museumObject) {
         boolean categoryFound;
-//        System.out.println("SEARCHING CATEGORIES OF: " + museumObject.getName());
 
         if (!museumObject.getCategories().isEmpty()) {
             for (String currentCategory : museumObject.getCategories()) {
@@ -27,7 +26,6 @@ public class DataManager {
                 for (String category : categories.keySet()) {
                     if (category.equals(currentCategory)) {
                         categories.get(category).add(museumObject);
-//                        System.out.println("CATEGORY FOUND: " + category);
                         categoryFound = true;
                         break;
                     }
@@ -37,7 +35,6 @@ public class DataManager {
                     List<MuseumObject> newList = new ArrayList<>();
                     newList.add(museumObject);
                     categories.put(currentCategory, newList);
-//                    System.out.println("NEW CATEGORY FOUND: " + currentCategory);
                 }
             }
         }
@@ -52,31 +49,35 @@ public class DataManager {
         }
     }
 
+    private static void sortByName(List<MuseumObject> list) {
+        Collections.sort(list, ((o1, o2) -> o1.getName().compareTo(o2.getName())));
+    }
+
     public static void sortByNameAZ() {
-        Collections.sort(museumObjects, new Comparator<MuseumObject>() {
-            @Override
-            public int compare(MuseumObject o1, MuseumObject o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+        sortByName(museumObjects);
+        sortByName(filteredMuseumObjects);
     }
 
     public static void sortByNameZA() {
         sortByNameAZ();
         Collections.reverse(museumObjects);
+        if (filteredMuseumObjects != museumObjects)
+            Collections.reverse(filteredMuseumObjects);
+    }
+
+    private static void sortByFirstTimeFrame(List<MuseumObject> list) {
+        Collections.sort(list, ((o1, o2) -> o1.getTimeFrame().get(0).compareTo(o2.getTimeFrame().get(0))));
     }
 
     public static void sortByOldest() {
-        Collections.sort(museumObjects, new Comparator<MuseumObject>() {
-            @Override
-            public int compare(MuseumObject o1, MuseumObject o2) {
-                return o1.getTimeFrame().get(0).compareTo(o2.getTimeFrame().get(0));
-            }
-        });
+        sortByFirstTimeFrame(museumObjects);
+        sortByFirstTimeFrame(filteredMuseumObjects);
     }
 
     public static void sortByNewest() {
         sortByOldest();
         Collections.reverse(museumObjects);
+        if (filteredMuseumObjects != museumObjects)
+            Collections.reverse(filteredMuseumObjects);
     }
 }

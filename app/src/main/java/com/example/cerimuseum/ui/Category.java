@@ -49,7 +49,7 @@ class Category extends Section {
         RecyclerViewAdapter.CustomItemHolder itemHolder = (RecyclerViewAdapter.CustomItemHolder) holder;
 
         // bind your view here
-        MuseumObject museumObject = DataManager.museumObjects.get(position);
+        MuseumObject museumObject = objects.get(position);
 
         // Thumbnail
         itemHolder.thumbnail.setImageBitmap(museumObject.getThumbnail());
