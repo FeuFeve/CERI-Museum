@@ -1,13 +1,13 @@
 package com.example.cerimuseum.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cerimuseum.R;
-import com.example.cerimuseum.model.DataManager;
 import com.example.cerimuseum.model.MuseumObject;
 
 import java.util.List;
@@ -91,6 +91,12 @@ class Category extends Section {
                 break;
         }
         itemHolder.container.setBackgroundColor(ContextCompat.getColor(context, color));
+
+        itemHolder.container.setOnClickListener((View v) -> {
+            Intent intent = new Intent(context, MuseumObjectActivity.class);
+            intent.putExtra(MuseumObject.TAG, museumObject.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

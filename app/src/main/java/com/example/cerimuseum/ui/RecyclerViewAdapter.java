@@ -36,18 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public CustomItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-        final CustomItemHolder viewHolder = new CustomItemHolder(view);
-
-        viewHolder.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MuseumObjectActivity.class);
-                intent.putExtra(MuseumObject.TAG, viewHolder.getAdapterPosition());
-                context.startActivity(intent);
-            }
-        });
-
-        return viewHolder;
+        return new CustomItemHolder(view);
     }
 
     @Override
@@ -94,6 +83,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 break;
         }
         holder.container.setBackgroundColor(ContextCompat.getColor(context, color));
+
+        holder.container.setOnClickListener((View v) -> {
+            Intent intent = new Intent(context, MuseumObjectActivity.class);
+            intent.putExtra(MuseumObject.TAG, museumObject.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
