@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cerimuseum.R;
 import com.example.cerimuseum.model.DataManager;
+import com.example.cerimuseum.model.MuseumObject;
+
+import java.util.List;
+import java.util.Map;
 
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
@@ -45,11 +49,10 @@ public class CategoriesFragment extends Fragment {
         sectionAdapter = new SectionedRecyclerViewAdapter();
 
         // Sections
-        System.out.println("NUMBER OF CATEGORIES: " + DataManager.categories.size());
-        for (String category : DataManager.categories.keySet()) {
-            sectionAdapter.addSection(new Category(getContext(), category, DataManager.categories.get(category)));
-            System.out.println(category + ": " + DataManager.categories.get(category).size() + " objects");
+        for(Map.Entry<String, List<MuseumObject>> entry : DataManager.categories.entrySet()) {
+            sectionAdapter.addSection(new Category(getContext(), entry.getKey(), entry.getValue()));
         }
+
         sectionAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(sectionAdapter);
     }

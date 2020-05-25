@@ -1,19 +1,17 @@
 package com.example.cerimuseum.model;
 
-import android.util.Pair;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DataManager {
 
     public static List<MuseumObject> museumObjects = new ArrayList<>();
     public static List<MuseumObject> filteredMuseumObjects;
 
-    public static HashMap<String, List<MuseumObject>> categories = new HashMap<>();
+    public static Map<String, List<MuseumObject>> categories = new TreeMap<>();
 
 
     public static void addToCorrespondingCategories(MuseumObject museumObject) {
