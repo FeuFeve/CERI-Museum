@@ -38,8 +38,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         final CustomItemHolder viewHolder = new CustomItemHolder(view);
 
-
-
         viewHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,39 +119,50 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 for (MuseumObject museumObject : DataManager.museumObjects) {
                     // Search in: Name
-                    if (museumObject.getName().toLowerCase().contains(filteredPattern))
+                    if (museumObject.getName().toLowerCase().contains(filteredPattern)) {
                         filteredList.add(museumObject);
+                        continue;
+                    }
 
                     // Search in: Brand
-                    else if (museumObject.getBrand().toLowerCase().contains(filteredPattern))
+                    if (museumObject.getBrand().toLowerCase().contains(filteredPattern)) {
                         filteredList.add(museumObject);
+                        continue;
+                    }
 
                     // Search in: Description
-                    else if (museumObject.getDescription().toLowerCase().contains(filteredPattern))
+                    if (museumObject.getDescription().toLowerCase().contains(filteredPattern)) {
                         filteredList.add(museumObject);
+                        continue;
+                    }
 
                     // Search in: Year (of acquisition)
-                    else if (String.valueOf(museumObject.getYear()).toLowerCase().contains(filteredPattern))
+                    if (String.valueOf(museumObject.getYear()).toLowerCase().contains(filteredPattern)) {
                         filteredList.add(museumObject);
+                        continue;
+                    }
 
-                    else {
-                        // Search in: Time frame
-                        if (!museumObject.getTimeFrame().isEmpty()) {
-                            for (int year : museumObject.getTimeFrame()) {
-                                if (String.valueOf(year).toLowerCase().contains(filteredPattern)) {
-                                    filteredList.add(museumObject);
-                                    break;
-                                }
+                    // Search in: Time frame
+                    if (!museumObject.getTimeFrame().isEmpty()) {
+                        boolean found = false;
+                        for (int year : museumObject.getTimeFrame()) {
+                            if (String.valueOf(year).toLowerCase().contains(filteredPattern)) {
+                                filteredList.add(museumObject);
+                                found = true;
+                                break;
                             }
                         }
+                        if (found) {
+                            continue;
+                        }
+                    }
 
-                        // Search in: Categories
-                        else if (!museumObject.getCategories().isEmpty()) {
-                            for (String category : museumObject.getCategories()) {
-                                if (category.toLowerCase().contains(filteredPattern)) {
-                                    filteredList.add(museumObject);
-                                    break;
-                                }
+                    // Search in: Categories
+                    if (!museumObject.getCategories().isEmpty()) {
+                        for (String category : museumObject.getCategories()) {
+                            if (category.toLowerCase().contains(filteredPattern)) {
+                                filteredList.add(museumObject);
+                                break;
                             }
                         }
                     }

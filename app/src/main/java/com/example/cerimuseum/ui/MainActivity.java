@@ -121,8 +121,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Actualize the RecyclerView
+            // Actualize the RecyclerViews
             activity.listFragment.adapter.notifyDataSetChanged();
+            activity.categoriesFragment.refreshSectionAdapter();
         }
     }
 }

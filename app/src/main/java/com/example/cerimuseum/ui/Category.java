@@ -17,11 +17,11 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 
 class Category extends Section {
 
-    Context context;
-    String title;
-    List<MuseumObject> objects;
+    private Context context;
+    private String title;
+    private List<MuseumObject> objects;
 
-    public Category(Context context, String title, List<MuseumObject> objects) {
+    Category(Context context, String title, List<MuseumObject> objects) {
         // call constructor with layout resources for this Section header and items
         super(SectionParameters.builder()
                 .itemResourceId(R.layout.list_item)
@@ -49,7 +49,7 @@ class Category extends Section {
         RecyclerViewAdapter.CustomItemHolder itemHolder = (RecyclerViewAdapter.CustomItemHolder) holder;
 
         // bind your view here
-        MuseumObject museumObject = DataManager.filteredMuseumObjects.get(position);
+        MuseumObject museumObject = DataManager.museumObjects.get(position);
 
         // Thumbnail
         itemHolder.thumbnail.setImageBitmap(museumObject.getThumbnail());

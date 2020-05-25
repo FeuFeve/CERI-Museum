@@ -27,6 +27,7 @@ public class JsonParser {
             readMuseumObject(reader);
         }
         reader.endObject();
+        DataManager.printCategories();
     }
 
     public static void parseDemos(InputStream response) throws IOException {

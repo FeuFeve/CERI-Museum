@@ -18,6 +18,7 @@ public class DataManager {
 
     public static void addToCorrespondingCategories(MuseumObject museumObject) {
         boolean categoryFound;
+//        System.out.println("SEARCHING CATEGORIES OF: " + museumObject.getName());
 
         if (!museumObject.getCategories().isEmpty()) {
             for (String currentCategory : museumObject.getCategories()) {
@@ -26,6 +27,7 @@ public class DataManager {
                 for (String category : categories.keySet()) {
                     if (category.equals(currentCategory)) {
                         categories.get(category).add(museumObject);
+//                        System.out.println("CATEGORY FOUND: " + category);
                         categoryFound = true;
                         break;
                     }
@@ -35,7 +37,17 @@ public class DataManager {
                     List<MuseumObject> newList = new ArrayList<>();
                     newList.add(museumObject);
                     categories.put(currentCategory, newList);
+//                    System.out.println("NEW CATEGORY FOUND: " + currentCategory);
                 }
+            }
+        }
+    }
+
+    public static void printCategories() {
+        for (String category : categories.keySet()) {
+            System.out.println("CATEGORY: " + category);
+            for (MuseumObject museumObject : categories.get(category)) {
+                System.out.println("\tName: " + museumObject.getName());
             }
         }
     }
