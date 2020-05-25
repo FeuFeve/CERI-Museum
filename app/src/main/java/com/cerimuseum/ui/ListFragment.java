@@ -1,4 +1,4 @@
-package com.example.cerimuseum.ui;
+package com.cerimuseum.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cerimuseum.R;
-import com.example.cerimuseum.model.DataManager;
+import com.cerimuseum.model.DataManager;
 
 public class ListFragment extends Fragment {
 

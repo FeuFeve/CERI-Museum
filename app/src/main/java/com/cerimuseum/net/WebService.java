@@ -1,8 +1,8 @@
-package com.example.cerimuseum.net;
+package com.cerimuseum.net;
 
 import android.net.Uri;
 
-import com.example.cerimuseum.parser.JsonParser;
+import com.cerimuseum.parser.JsonParser;
 
 import java.io.IOException;
 import java.io.InputStream;

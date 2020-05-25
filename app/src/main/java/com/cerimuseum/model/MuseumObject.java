@@ -1,4 +1,4 @@
-package com.example.cerimuseum.model;
+package com.cerimuseum.model;
 
 import android.graphics.Bitmap;
 import android.util.Log;

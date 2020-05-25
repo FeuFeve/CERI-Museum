@@ -1,4 +1,4 @@
-package com.example.cerimuseum.ui;
+package com.cerimuseum.ui;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.cerimuseum.R;
-import com.example.cerimuseum.model.DataManager;
-import com.example.cerimuseum.net.WebService;
-import com.example.cerimuseum.parser.JsonParser;
+import com.cerimuseum.model.DataManager;
+import com.cerimuseum.net.WebService;
+import com.cerimuseum.parser.JsonParser;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.Nullable;

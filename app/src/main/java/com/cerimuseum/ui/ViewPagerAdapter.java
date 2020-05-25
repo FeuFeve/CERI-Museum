@@ -1,4 +1,4 @@
-package com.example.cerimuseum.ui;
+package com.cerimuseum.ui;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

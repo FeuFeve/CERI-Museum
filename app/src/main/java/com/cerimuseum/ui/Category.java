@@ -1,4 +1,4 @@
-package com.example.cerimuseum.ui;
+package com.cerimuseum.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cerimuseum.R;
-import com.example.cerimuseum.model.MuseumObject;
+import com.cerimuseum.model.MuseumObject;
 
 import java.util.List;
 

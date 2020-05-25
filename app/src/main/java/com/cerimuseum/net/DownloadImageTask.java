@@ -1,4 +1,4 @@
-package com.example.cerimuseum.net;
+package com.cerimuseum.net;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.example.cerimuseum.model.MuseumObject;
+import com.cerimuseum.model.MuseumObject;
 
 import java.io.InputStream;
 import java.util.List;

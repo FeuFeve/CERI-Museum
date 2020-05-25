@@ -1,4 +1,4 @@
-package com.example.cerimuseum.model;
+package com.cerimuseum.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

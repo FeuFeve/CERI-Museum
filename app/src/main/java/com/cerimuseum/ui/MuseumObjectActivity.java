@@ -1,4 +1,4 @@
-package com.example.cerimuseum.ui;
+package com.cerimuseum.ui;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,10 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cerimuseum.R;
-import com.example.cerimuseum.model.DataManager;
-import com.example.cerimuseum.model.MuseumObject;
-import com.example.cerimuseum.net.DownloadImageTask;
-import com.example.cerimuseum.net.WebService;
+import com.cerimuseum.model.DataManager;
+import com.cerimuseum.model.MuseumObject;
+import com.cerimuseum.net.DownloadImageTask;
+import com.cerimuseum.net.WebService;
 
 import java.net.MalformedURLException;
 import java.util.List;
