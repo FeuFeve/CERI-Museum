@@ -20,7 +20,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     private int maxSize;
 
 
-    public DownloadImageTask(ImageView imageView, int maxSize) {
+    private DownloadImageTask(ImageView imageView, int maxSize) {
         this.imageView = imageView;
         this.maxSize = maxSize;
     }

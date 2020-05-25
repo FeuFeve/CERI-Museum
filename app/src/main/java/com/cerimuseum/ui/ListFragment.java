@@ -15,16 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cerimuseum.R;
+import com.cerimuseum.R;
 import com.cerimuseum.model.DataManager;
 
 public class ListFragment extends Fragment {
 
-    View view;
-    private RecyclerView recyclerView;
+    private View view;
     RecyclerViewAdapter adapter;
-
-    Spinner spinnerSortBy;
 
 
     @Nullable
@@ -32,7 +29,7 @@ public class ListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        recyclerView = view.findViewById(R.id.listRecyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.listRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         adapter = new RecyclerViewAdapter(getContext());
@@ -49,7 +46,7 @@ public class ListFragment extends Fragment {
     }
 
     private void createSortBySpinner() {
-        spinnerSortBy = view.findViewById(R.id.spinnerSortBy);
+        Spinner spinnerSortBy = view.findViewById(R.id.spinnerSortBy);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.SortByList));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

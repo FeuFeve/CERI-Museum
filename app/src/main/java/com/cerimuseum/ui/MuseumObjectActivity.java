@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cerimuseum.R;
+import com.cerimuseum.R;
 import com.cerimuseum.model.DataManager;
 import com.cerimuseum.model.MuseumObject;
 import com.cerimuseum.net.DownloadImageTask;

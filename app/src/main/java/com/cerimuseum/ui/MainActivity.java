@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.cerimuseum.R;
+import com.cerimuseum.R;
 import com.cerimuseum.model.DataManager;
 import com.cerimuseum.net.WebService;
 import com.cerimuseum.parser.JsonParser;
@@ -24,8 +24,6 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     ViewPagerAdapter adapter;
     ListFragment listFragment;
     CategoriesFragment categoriesFragment;
@@ -38,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tabLayout = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.view_pager);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add fragments

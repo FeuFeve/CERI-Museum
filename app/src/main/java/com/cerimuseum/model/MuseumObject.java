@@ -1,7 +1,6 @@
 package com.cerimuseum.model;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.util.Pair;
 
 import java.util.List;
@@ -10,11 +9,11 @@ public class MuseumObject {
 
     public static final String TAG = "MuseumObject";
 
-    private String id = "";
+    private String id;
 
-    private String name = "";
+    private String name;
     private String brand = "";
-    private String description = "";
+    private String description;
     private int year;
     private int working;
 
@@ -34,36 +33,6 @@ public class MuseumObject {
         this.description = description;
         this.categories = categories;
         this.timeFrame = timeFrame;
-    }
-
-    void print() {
-        Log.d(TAG, "id: " + id);
-
-        Log.d(TAG, "\tname: " + name);
-        Log.d(TAG, "\tbrand: " + brand);
-        Log.d(TAG, "\tdescription: " + description);
-        Log.d(TAG, "\tyear: " + year);
-        Log.d(TAG, "\tworking: " + working);
-
-        Log.d(TAG, "\ttimeFrame:");
-        for (int i : timeFrame) {
-            Log.d(TAG, "\t\t" + i);
-        }
-
-        Log.d(TAG, "\ttechnicalDetails:");
-        for (String s : technicalDetails) {
-            Log.d(TAG, "\t\t" + s);
-        }
-
-        Log.d(TAG, "\tcategories:");
-        for (String s : categories) {
-            Log.d(TAG, "\t\t" + s);
-        }
-
-        Log.d(TAG, "\tpictureIDs:");
-        for (Pair<String, String> p : pictureIDs) {
-            Log.d(TAG, "\t\t" + p.first + ": " + p.second);
-        }
     }
 
     public String getId() {

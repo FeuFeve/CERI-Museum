@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cerimuseum.R;
+import com.cerimuseum.R;
 import com.cerimuseum.model.DataManager;
 import com.cerimuseum.model.MuseumObject;
 
@@ -211,7 +211,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView tvTitle;
 
-        public CustomHeaderHolder(@NonNull View itemView) {
+        CustomHeaderHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.sectionName);

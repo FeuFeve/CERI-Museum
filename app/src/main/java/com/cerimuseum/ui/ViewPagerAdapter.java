@@ -15,7 +15,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
 
     ViewPagerAdapter(FragmentManager fragmentManager) {
-        super(fragmentManager);
+        super(fragmentManager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     @Override

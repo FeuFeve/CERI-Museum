@@ -2,8 +2,6 @@ package com.cerimuseum.net;
 
 import android.net.Uri;
 
-import com.cerimuseum.parser.JsonParser;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -65,8 +63,6 @@ public class WebService {
         final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
         // Get the response
-        InputStream response = urlConnection.getInputStream();
-
-        return response;
+        return urlConnection.getInputStream();
     }
 }

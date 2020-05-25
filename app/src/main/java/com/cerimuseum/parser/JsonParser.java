@@ -45,7 +45,7 @@ public class JsonParser {
             for (MuseumObject museumObject : DataManager.museumObjects) {
                 if (museumObject.getId().equals(id)) {
                     if (museumObject.getNextDemos() == null) {
-                        museumObject.setNextDemos(new ArrayList<String>());
+                        museumObject.setNextDemos(new ArrayList<>());
                     }
                     museumObject.getNextDemos().add(time);
                     break;
